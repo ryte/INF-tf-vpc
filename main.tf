@@ -9,7 +9,7 @@ resource "aws_vpc" "vpc" {
   cidr_block                       = "${var.cidr_v4}"
   enable_dns_hostnames             = true
   enable_dns_support               = true
-  tags                             = "${merge(local.tags)}"
+  tags                             = "${local.tags}"
 }
 
 data "aws_route53_zone" "private_zone" {
@@ -29,7 +29,7 @@ resource "aws_egress_only_internet_gateway" "egw" {
 }
 
 resource "aws_internet_gateway" "igw" {
-  tags   = "${merge(local.tags)}"
+  tags   = "${local.tags}"
   vpc_id = "${aws_vpc.vpc.id}"
 }
 
