@@ -1,17 +1,15 @@
 locals {
-  name = "${var.environment}-${var.project}-subnet-private-${var.name}"
+  name = "${var.tags["Environment"]}-subnet-private"
 }
 
 locals {
-  tags = {
-    CID         = "${var.cid}"
-    Environment = "${var.environment}"
-    Module      = "vpc/subnet/private"
-    Name        = "${local.name}"
-    Owner       = "${var.owner}"
-    Project     = "${var.project}"
-    Provisioner = "Terraform"
-  }
+  tags = "${merge(
+    var.tags,
+    map(
+      "Module", "vpc/subnet/private",
+      "Name", "${local.name}"
+    )
+  )}"
 }
 
 locals {

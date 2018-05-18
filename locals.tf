@@ -1,10 +1,12 @@
 locals {
-  name = "${var.tags.environment}-vpc"
+  name = "${var.tags["Environment"]}-vpc"
+}
+
+locals {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "OpenShift Master"
-      "Module", "vpc"
+      "Module", "vpc",
       "Name", "${local.name}"
     )
   )}"
