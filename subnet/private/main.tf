@@ -54,6 +54,6 @@ resource "aws_subnet" "subnet" {
   cidr_block                      = "${cidrsubnet(data.aws_vpc.current.cidr_block, var.v4_newbits, var.v4_netnum_summand + count.index)}"
   ipv6_cidr_block                 = "${cidrsubnet(data.aws_vpc.current.ipv6_cidr_block, var.v6_newbits, var.v6_netnum_summand + count.index)}"
   map_public_ip_on_launch         = false
-  tags                            = "${merge(local.tags)}"
+  tags                            = "${local.tags}"
   vpc_id                          = "${var.vpc_id}"
 }
