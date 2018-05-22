@@ -20,7 +20,7 @@ resource "aws_route_table_association" "subnet" {
 
 resource "aws_route_table" "subnet" {
   // propagating_vgws = "${var.vgws}"
-  tags   = "${merge(local.tags)}"
+  tags   = "${local.tags}"
   vpc_id = "${var.vpc_id}"
 }
 

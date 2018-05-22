@@ -1,7 +1,8 @@
-variable "cid" {}
-variable "environment" {}
-variable "owner" {}
-variable "project" {}
+variable "tags" {
+  type = "map"
+  description = "common tags to add to the ressources"
+  default = {}
+}
 
 variable "availability_zones" {
   default     = ["a", "b", "c"]

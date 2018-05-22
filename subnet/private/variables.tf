@@ -1,8 +1,8 @@
-variable "cid" {}
-variable "environment" {}
-variable "name" {}
-variable "owner" {}
-variable "project" {}
+variable "tags" {
+  type = "map"
+  description = "common tags to add to the ressources"
+  default = {}
+}
 
 variable "vpc_id" {
   description = "VPC id the subnets will be defined in."
