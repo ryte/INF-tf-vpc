@@ -20,7 +20,6 @@ resource "aws_route" "peering_route_requester" {
 # Accepter's side of the connection. This resource will be created under the account that receives the VPC peering request.
 resource "aws_vpc_peering_connection_accepter" "peer" {
   provider                  = "aws.peer"
-  count                     = "${length(var.accepter_route_table_ids)}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.peer.id}"
   auto_accept               = true
   tags                      = "${merge(local.tags,map("PeerSide","Accepter"))}"
