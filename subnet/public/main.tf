@@ -33,7 +33,7 @@ resource "aws_route" "public_default" {
 resource "aws_route" "public_default6" {
   route_table_id              = "${aws_route_table.subnet.id}"
   destination_ipv6_cidr_block = "::/0"
-  egress_only_gateway_id      = "${var.egw_id}"
+  gateway_id                  = "${var.igw_id}"
 }
 
 resource "aws_subnet" "subnet" {
