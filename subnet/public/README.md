@@ -73,6 +73,10 @@ and currently maintained by the [INF](https://github.com/orgs/onpage-org/teams/i
     -  __description__: VPC id the subnets will be defined in
     -  __type__: `string`
 
+- `zone_id`
+    -  __description__: route53 zone id needed for nat gateway
+    -  __type__: `string`
+
 
 ## Usage
 

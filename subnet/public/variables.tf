@@ -51,3 +51,7 @@ variable "v6_netnum_summand" {}
 //   default = []
 // }
 
+
+variable "zone_id" {
+  type = "string"
+}
