@@ -17,9 +17,6 @@ resource "aws_nat_gateway" "gw" {
   tags          = "${merge(local.tags, map("AZ", "${data.aws_region.current.name}${var.ngw_az}"))}"
 }
 
-data "aws_route53_zone" "zone" {
-  name = "${var.domain}."
-}
 
 resource "aws_route53_record" "record" {
   name = "${var.ngw_hostname}.${var.domain}."
@@ -30,5 +27,5 @@ resource "aws_route53_record" "record" {
 
   ttl     = "60"
   type    = "A"
-  zone_id = "${data.aws_route53_zone.zone.id}"
+  zone_id = "${var.zone_id}"
 }
