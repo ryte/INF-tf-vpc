@@ -88,6 +88,7 @@ module "subnet_private" {
   // egw_id      = "${module.vpc.egw_id}"
   gw          = "ngw"
   ngw_id      = "${module.subnet_public.nat_gateway_id}"
+  zone_id     = "${aws_route53_zone.ryte_tech.id}"
 
   v4_newbits        = 3
   v4_netnum_summand = 3
@@ -121,18 +122,3 @@ module "subnet_private" {
  - `route_table_id`
     -  __description__: ID of the routing table associated with this subnets
     -  __type__: `string`
-
-
-## Authors
-
-- [Armin Grodon](https://github.com/x4121)
-- [Markus Schmid](https://github.com/h0raz)
-
-## Changelog
-
-0.1.0 - Initial release.
-
-## License
-
-
-This software is released under the MIT License (see `LICENSE`).
