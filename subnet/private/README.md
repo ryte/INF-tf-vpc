@@ -87,6 +87,10 @@ module "subnet_private" {
 
 ## Outputs
 
+- `arns`
+    -  __description__: List of subnet arns
+    -  __type__: `list`
+
 - `ids`
     -  __description__: List of subnet ids
     -  __type__: `list`
