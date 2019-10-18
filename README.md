@@ -58,7 +58,7 @@ module "vpc" {
   cidr_v4                    = "${var.cidr_v4}"
   flowlogs_retention_in_days = 5
 
-  source = "git@github.com:ryte/INF-tf-vpc.git?ref=v0.1.0"
+  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.1.0"
 }
 ```
 

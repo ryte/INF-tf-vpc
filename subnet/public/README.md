@@ -97,7 +97,7 @@ module "subnet_private" {
   // availability_zones = ["a", "b", "c"]
   vpc_id = "${module.vpc.id}"
 
-  source = "git@github.com:ryte/INF-tf-vpc.git?ref=v0.1.0//subnet/private"
+  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.1.0//subnet/private"
 }
 ```
 
