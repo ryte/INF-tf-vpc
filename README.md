@@ -84,11 +84,10 @@ module "vpc" {
 
 ## Changelog
 
-0.2.0 - made the Route53 zone a variable instead of data lookup
-0.1.1 - replace egress only gateway with gateway in public subnet
-0.1.0 - Initial release.
+- 0.2.0 - made the Route53 zone a variable instead of data lookup
+- 0.1.1 - replace egress only gateway with gateway in public subnet
+- 0.1.0 - Initial release.
 
 ## License
-
 
 This software is released under the MIT License (see `LICENSE`).
