@@ -5,7 +5,7 @@ Terraform module for creating public subnets in multiple availability zones
 if ngw is set to true a nat gateway with a elastic IP is setup
 
 This project is [internal open source](https://en.wikipedia.org/wiki/Inner_source)
-and currently maintained by the [INF](https://github.com/orgs/onpage-org/teams/inf).
+and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 
 ## Module Input Variables
@@ -97,7 +97,7 @@ module "subnet_private" {
   // availability_zones = ["a", "b", "c"]
   vpc_id = "${module.vpc.id}"
 
-  source = "git@github.com:onpage-org/INF-tf-vpc.git?ref=v0.1.0//subnet/private"
+  source = "git@github.com:ryte/INF-tf-vpc.git?ref=v0.1.0//subnet/private"
 }
 ```
 

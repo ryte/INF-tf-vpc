@@ -10,7 +10,7 @@ also a available in that module
 
 
 This project is [internal open source](https://en.wikipedia.org/wiki/Inner_source)
-and currently maintained by the [INF](https://github.com/orgs/onpage-org/teams/inf).
+and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 
 ## Module Input Variables
@@ -58,7 +58,7 @@ module "vpc" {
   cidr_v4                    = "${var.cidr_v4}"
   flowlogs_retention_in_days = 5
 
-  source = "git@github.com:onpage-org/INF-tf-vpc.git?ref=v0.1.0"
+  source = "git@github.com:ryte/INF-tf-vpc.git?ref=v0.1.0"
 }
 ```
 
