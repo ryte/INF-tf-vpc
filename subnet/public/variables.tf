@@ -1,15 +1,18 @@
 variable "tags" {
-  type = "map"
+  type        = map(string)
   description = "common tags to add to the ressources"
-  default = {}
+  default     = {}
 }
 
-variable "vpc_id" {}
-variable "domain" {}
+variable "vpc_id" {
+}
+
+variable "domain" {
+}
 
 variable "availability_zones" {
   default     = ["a", "b", "c"]
-  type        = "list"
+  type        = list(string)
   description = "List of AZs the subnet will be created in."
 }
 
@@ -43,15 +46,18 @@ variable "v6_newbits" {
   default = 8 // /64
 }
 
-variable "v4_netnum_summand" {}
-variable "v6_netnum_summand" {}
+variable "v4_netnum_summand" {
+}
+
+variable "v6_netnum_summand" {
+}
 
 // variable "vgws" {
 //   type    = "list"
 //   default = []
 // }
 
-
 variable "zone_id" {
-  type = "string"
+  type = string
 }
+

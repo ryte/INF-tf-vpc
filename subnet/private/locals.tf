@@ -3,16 +3,17 @@ locals {
 }
 
 locals {
-  tags = "${merge(
+  tags = merge(
     var.tags,
-    map(
-      "Module", "vpc/subnet/private",
-      "Name", "${local.name}"
-    )
-  )}"
+    {
+      "Module" = "vpc/subnet/private"
+      "Name"   = local.name
+    },
+  )
 }
 
 locals {
-  is_egw = "${var.gw =="egw" ? 1 : 0}"
-  is_ngw = "${var.gw =="ngw" ? 1 : 0}"
+  is_egw = var.gw == "egw" ? 1 : 0
+  is_ngw = var.gw == "ngw" ? 1 : 0
 }
+
