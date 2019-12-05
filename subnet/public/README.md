@@ -82,22 +82,22 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 ```hcl
 module "subnet_private" {
-  tags        = "${local.common_tags}"
+  tags        = local.common_tags
 
   // disable egw (IPv6) gateway for IPv4 whitelisting
-  // egw_id      = "${module.vpc.egw_id}"
+  // egw_id      = module.vpc.egw_id
   gw          = "ngw"
-  ngw_id      = "${module.subnet_public.nat_gateway_id}"
-  zone_id     = "${aws_route53_zone.ryte_tech.id}"
+  ngw_id      = module.subnet_public.nat_gateway_id
+  zone_id     = aws_route53_zone.ryte_tech.id
 
   v4_newbits        = 3
   v4_netnum_summand = 3
   v6_netnum_summand = 3
 
   // availability_zones = ["a", "b", "c"]
-  vpc_id = "${module.vpc.id}"
+  vpc_id = module.vpc.id
 
-  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.1.0//subnet/private"
+  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.3.0//subnet/private"
 }
 ```
 

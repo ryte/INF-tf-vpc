@@ -54,11 +54,11 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 ```hcl
 module "vpc" {
-  tags                       = "${local.common_tags}"
-  cidr_v4                    = "${var.cidr_v4}"
+  tags                       = local.common_tags
+  cidr_v4                    = var.cidr_v4
   flowlogs_retention_in_days = 5
 
-  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.1.0"
+  source = "github.com/ryte/INF-tf-vpc.git?ref=v0.3.0"
 }
 ```
 
@@ -84,6 +84,7 @@ module "vpc" {
 
 ## Changelog
 
+- 0.3.0 - Upgrade to terraform 0.12.x
 - 0.2.0 - made the Route53 zone a variable instead of data lookup
 - 0.1.1 - replace egress only gateway with gateway in public subnet
 - 0.1.0 - Initial release.
