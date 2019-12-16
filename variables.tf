@@ -1,7 +1,7 @@
 variable "tags" {
-  type = "map"
+  type        = map(string)
   description = "common tags to add to the ressources"
-  default = {}
+  default     = {}
 }
 
 variable "availability_zones" {
@@ -33,3 +33,4 @@ variable "flowlogs_traffic_type" {
   default     = "REJECT"
   description = "The type of traffic to capture. Valid values: ACCEPT, REJECT, ALL"
 }
+

@@ -1,7 +1,7 @@
 variable "tags" {
-  type = "map"
+  type        = map(string)
   description = "common tags to add to the ressources"
-  default = {}
+  default     = {}
 }
 
 variable "vpc_id" {
@@ -10,7 +10,7 @@ variable "vpc_id" {
 
 variable "availability_zones" {
   default     = ["a", "b", "c"]
-  type        = "list"
+  type        = list(string)
   description = "List of AZs the subnet will be created in."
 }
 
@@ -32,10 +32,14 @@ variable "v6_newbits" {
   default = 8 // /64
 }
 
-variable "v4_netnum_summand" {}
-variable "v6_netnum_summand" {}
+variable "v4_netnum_summand" {
+}
+
+variable "v6_netnum_summand" {
+}
 
 variable "gw" {
   default     = false
   description = "set the gateway, 'ngw', 'egw', false allowed"
 }
+
