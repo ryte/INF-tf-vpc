@@ -22,4 +22,3 @@ output "nat_gateway_fqdn" {
   value       = aws_route53_record.record.fqdn
   description = "FQDN of the NAT GW"
 }
-

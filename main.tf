@@ -26,6 +26,7 @@ resource "aws_route53_zone_association" "private_zone" {
 }
 
 resource "aws_egress_only_internet_gateway" "egw" {
+  tags   = local.tags
   vpc_id = aws_vpc.vpc.id
 }
 
@@ -39,9 +40,7 @@ resource "aws_vpc_dhcp_options" "vpc" {
   domain_name         = var.domain_internal
   domain_name_servers = ["AmazonProvidedDNS"]
 
-  tags = {
-    Name = "${terraform.workspace}-dhcp-option-set"
-  }
+  tags = local.tags
 }
 
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
@@ -49,4 +48,3 @@ resource "aws_vpc_dhcp_options_association" "dns_resolver" {
   vpc_id          = aws_vpc.vpc.id
   dhcp_options_id = aws_vpc_dhcp_options.vpc[0].id
 }
-

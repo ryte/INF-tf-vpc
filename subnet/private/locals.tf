@@ -1,5 +1,5 @@
 locals {
-  name = "${var.tags["Environment"]}-subnet-private"
+  name = "${var.environment}-subnet-private"
 }
 
 locals {
@@ -16,4 +16,3 @@ locals {
   is_egw = var.gw == "egw" ? 1 : 0
   is_ngw = var.gw == "ngw" ? 1 : 0
 }
-

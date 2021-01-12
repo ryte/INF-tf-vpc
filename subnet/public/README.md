@@ -25,6 +25,10 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
     -  __type__: `string`
     -  __default__: ""
 
+- `environment`
+    -  __description__: the environment this vpc is created in (e.g. 'testing')
+    -  __type__: `string`
+
 - `igw_id`
     -  __description__: ID of the Internet gateway for outgoing. IPV4 traffic
     -  __type__: `string`
@@ -83,6 +87,7 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 ```hcl
 module "subnet_private" {
   tags        = local.common_tags
+  environment = var.environment
 
   // disable egw (IPv6) gateway for IPv4 whitelisting
   // egw_id      = module.vpc.egw_id
@@ -97,7 +102,7 @@ module "subnet_private" {
   // availability_zones = ["a", "b", "c"]
   vpc_id = module.vpc.id
 
-  source = "github.com/ryte/INF-tf-vpc//subnet/private?ref=v0.3.0"
+  source = "github.com/ryte/INF-tf-vpc//subnet/private?ref=v0.3.1"
 }
 ```
 

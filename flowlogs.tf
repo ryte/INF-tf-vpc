@@ -1,5 +1,6 @@
 resource "aws_flow_log" "flow_log" {
   count           = var.deploy_flowlogs ? 1 : 0
+  tags            = local.tags
   log_destination = aws_cloudwatch_log_group.log_group[0].arn
   iam_role_arn    = aws_iam_role.flowlogs_role[0].arn
   vpc_id          = aws_vpc.vpc.id
@@ -11,17 +12,13 @@ resource "aws_cloudwatch_log_group" "log_group" {
   name              = "flowlogs-${local.name}"
   retention_in_days = var.flowlogs_retention_in_days
 
-  tags = merge(
-    local.tags,
-    {
-      "Name" = "flowlogs-${local.name}"
-    },
-  )
+  tags = merge(local.tags, {Name = "flowlogs-${local.name}"})
 }
 
 resource "aws_iam_role" "flowlogs_role" {
   count = var.deploy_flowlogs ? 1 : 0
   name  = "flowlogs_role-${local.name}"
+  tags  = local.tags
 
   assume_role_policy = <<EOF
 {
@@ -66,4 +63,3 @@ resource "aws_iam_role_policy" "flowlogs_policy" {
 EOF
 
 }
-

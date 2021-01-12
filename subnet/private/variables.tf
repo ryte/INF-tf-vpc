@@ -43,3 +43,5 @@ variable "gw" {
   description = "set the gateway, 'ngw', 'egw', false allowed"
 }
 
+variable "environment" {
+}
