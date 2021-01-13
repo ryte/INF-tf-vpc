@@ -6,12 +6,7 @@ data "aws_vpc" "current" {
 }
 
 resource "aws_route_table" "global_route_table" {
-  tags = merge(
-    local.tags,
-    {
-      "Role" = "global"
-    },
-  )
+  tags = merge(local.tags, {Role = "global"})
   vpc_id = var.vpc_id
 }
 
@@ -71,4 +66,3 @@ resource "aws_subnet" "subnet" {
   tags                    = local.tags
   vpc_id                  = var.vpc_id
 }
-

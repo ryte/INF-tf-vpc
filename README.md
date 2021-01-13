@@ -35,6 +35,10 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
     -  __type__: `string`
     -  __default__: ""
 
+- `environment`
+    -  __description__: the environment this vpc is created in (e.g. 'testing')
+    -  __type__: `string`
+
 - `flowlogs_retention_in_days`
     -  __description__: CloudWatch Logs entry retention in days
     -  __type__: `string`
@@ -55,10 +59,11 @@ and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 ```hcl
 module "vpc" {
   tags                       = local.common_tags
+  environment                = var.environment
   cidr_v4                    = var.cidr_v4
   flowlogs_retention_in_days = 5
 
-  source = "github.com/ryte/INF-tf-vpc?ref=v0.3.0"
+  source = "github.com/ryte/INF-tf-vpc?ref=v0.3.1"
 }
 ```
 
@@ -84,6 +89,7 @@ module "vpc" {
 
 ## Changelog
 
+- 0.3.1 - Add variable `environment` instead of reading from tags
 - 0.3.0 - Upgrade to terraform 0.12.x
 - 0.2.0 - made the Route53 zone a variable instead of data lookup
 - 0.1.1 - replace egress only gateway with gateway in public subnet

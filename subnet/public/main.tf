@@ -53,7 +53,6 @@ resource "aws_subnet" "subnet" {
     var.v6_netnum_summand + count.index,
   )
   map_public_ip_on_launch = true
-  tags                    = merge(local.tags)
+  tags                    = local.tags
   vpc_id                  = var.vpc_id
 }
-

@@ -1,5 +1,5 @@
 locals {
-  name = "${var.tags["Environment"]}-vpc"
+  name = "${var.environment}-vpc"
 }
 
 locals {
@@ -11,4 +11,3 @@ locals {
     },
   )
 }
-

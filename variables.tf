@@ -34,3 +34,5 @@ variable "flowlogs_traffic_type" {
   description = "The type of traffic to capture. Valid values: ACCEPT, REJECT, ALL"
 }
 
+variable "environment" {
+}
