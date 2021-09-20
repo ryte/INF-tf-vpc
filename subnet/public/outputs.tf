@@ -1,6 +1,6 @@
 output "ids" {
   value       = aws_subnet.subnet.*.id
-  description = "Subnet IDs."
+  description = "List of subnet IDs."
 }
 
 output "route_table_id" {

@@ -15,7 +15,7 @@ resource "aws_nat_gateway" "gw" {
 
   allocation_id = aws_eip.eip[0].id
   subnet_id     = aws_subnet.subnet[local.az_subnet_index].id
-  tags = merge(local.tags, {AZ = "${data.aws_region.current.name}${var.ngw_az}"})
+  tags          = merge(local.tags, { AZ = "${data.aws_region.current.name}${var.ngw_az}" })
 }
 
 resource "aws_route53_record" "record" {

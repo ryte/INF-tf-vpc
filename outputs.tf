@@ -10,5 +10,5 @@ output "id" {
 
 output "igw_id" {
   value       = aws_internet_gateway.igw.id
-  description = "igw id"
+  description = "ID of the Internet Gateway deployed along with the VPC"
 }

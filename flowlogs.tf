@@ -12,7 +12,7 @@ resource "aws_cloudwatch_log_group" "log_group" {
   name              = "flowlogs-${local.name}"
   retention_in_days = var.flowlogs_retention_in_days
 
-  tags = merge(local.tags, {Name = "flowlogs-${local.name}"})
+  tags = merge(local.tags, { Name = "flowlogs-${local.name}" })
 }
 
 resource "aws_iam_role" "flowlogs_role" {
