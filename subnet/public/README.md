@@ -8,80 +8,168 @@ This project is [internal open source](https://en.wikipedia.org/wiki/Inner_sourc
 and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 
-## Module Input Variables
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
+The following requirements are needed by this module:
 
-- `availability_zones`
-    -  __description__: Region AZs this VPC should cover. Currently this would be a list of two (a, b) or three (a, b, c) AZs.
-    -  __type__: `map`
-    -  __default__: ["a", "b", "c"]
+- terraform (>= 0.12)
 
-- `domain`
-    -  __description__: the module creates a route53 domain entry and therefore need the domain in which the entry should be created
-    -  __type__: `string`
+## Providers
 
-- `egw_id`
-    -  __description__: ID of the Egress only gateway for outgoing IPV6 traffic
-    -  __type__: `string`
-    -  __default__: ""
+The following providers are used by this module:
 
-- `environment`
-    -  __description__: the environment this vpc is created in (e.g. 'testing')
-    -  __type__: `string`
+- aws
 
-- `igw_id`
-    -  __description__: ID of the Internet gateway for outgoing. IPV4 traffic
-    -  __type__: `string`
+## Required Inputs
 
-- `ngw`
-    -  __description__: Deploy a NAT gateway inside the created subnets
-    -  __type__: `string`
-    -  __default__: false
+The following input variables are required:
 
-- `ngw_az`
-    -  __description__: Defines in which AZ the NAT gateway will be deployed in. Depends on `ngw=true`
-    -  __type__: `string`
-    -  __default__: "a"
+### domain
 
-- `ngw_hostname`
-    -  __description__:
-    -  __type__: `string`
-    -  __default__: "natgw"
+Description: the module creates a route53 domain entry and therefore need the domain in which the entry should be created
 
-- `tags`
-    -  __description__: a map of tags which is added to all supporting ressources
-    -  __type__: `map` `string`
-    -  __default__: {}
+Type: `string`
 
-- `v4_netnum_summand`
-    -  __description__: subnet count offset
-    -  __type__: `string`
-    -  __default__:
+### egw\_id
 
-- `v4_newbits`
-    -  __description__: bits for the new subnets 8 creates a /24 from a /16 VPC
-    -  __type__: `string`
-    -  __default__: 8
+Description: ID of the Egress only gateway for outgoing IPV6 traffic.
 
-- `v6_netnum_summand`
-    -  __description__: subnet count offset
-    -  __type__: `string`
-    -  __default__:
+Type: `string`
 
-- `v6_newbits`
-    -  __description__: bits for the new subnets 8 creates a /24 from a /16 VPC
-    -  __type__: `string`
-    -  __default__: 8
+### environment
 
-- `vpc_id`
-    -  __description__: VPC id the subnets will be defined in
-    -  __type__: `string`
+Description: the environment this vpc is created in (e.g. 'testing')
 
-- `zone_id`
-    -  __description__: route53 zone id needed for nat gateway
-    -  __type__: `string`
+Type: `string`
 
+### igw\_id
 
+Description: ID of the Internet gateway for outgoing. IPV4 traffic.
+
+Type: `string`
+
+### vpc\_id
+
+Description: VPC id the subnets will be defined in
+
+Type: `string`
+
+### zone\_id
+
+Description: route53 zone id needed for nat gateway
+
+Type: `string`
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### availability\_zones
+
+Description: Region AZs this VPC should cover. Currently this would be a list of two (a, b) or three (a, b, c) AZs.
+
+Type: `list(string)`
+
+Default:
+
+```json
+[
+  "a",
+  "b",
+  "c"
+]
+```
+
+### ngw
+
+Description: Deploy a NAT gateway inside the created subnets.
+
+Type: `bool`
+
+Default: `false`
+
+### ngw\_az
+
+Description: Defines in which AZ the NAT gateway will be deployed in. Depends on `ngw=true`.
+
+Type: `string`
+
+Default: `"a"`
+
+### ngw\_hostname
+
+Description: n/a
+
+Type: `string`
+
+Default: `"natgw"`
+
+### tags
+
+Description: common tags to add to the ressources
+
+Type: `map(string)`
+
+Default: `{}`
+
+### v4\_netnum\_summand
+
+Description: subnet count offset
+
+Type: `any`
+
+Default: `null`
+
+### v4\_newbits
+
+Description: bits for the new subnets 8 creates a /24 from a /16 VPC
+
+Type: `number`
+
+Default: `8`
+
+### v6\_netnum\_summand
+
+Description: subnet count offset
+
+Type: `any`
+
+Default: `null`
+
+### v6\_newbits
+
+Description: bits for the new subnets 8 creates a /24 from a /16 VPC
+
+Type: `number`
+
+Default: `8`
+
+## Outputs
+
+The following outputs are exported:
+
+### ids
+
+Description: List of subnet IDs.
+
+### nat\_gateway\_fqdn
+
+Description: FQDN of the NAT GW
+
+### nat\_gateway\_id
+
+Description: ID of the NAT gateway deployed in one of the subnets.
+
+### nat\_gateway\_public\_ip
+
+Description: IP of the NAT gateway deployed in one of the subnets.
+
+### route\_table\_id
+
+Description: ID of the routing table associated with this subnets.
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Usage
 
 ```hcl
@@ -105,25 +193,3 @@ module "subnet_private" {
   source = "github.com/ryte/INF-tf-vpc//subnet/private?ref=v0.3.1"
 }
 ```
-
-## Outputs
-
-- `ids`
-    -  __description__: List of subnet ids
-    -  __type__: `list`
-
- - `nat_gateway_fqdn`
-    -  __description__: FQDN of the NAT GW
-    -  __type__: `string`
-
- - `nat_gateway_id`
-    -  __description__: ID of the NAT gateway deployed in one of the subnets
-    -  __type__: `string`
-
- - `nat_gateway_public_ip`
-    -  __description__: IP of the NAT gateway deployed in one of the subnets
-    -  __type__: `string`
-
- - `route_table_id`
-    -  __description__: ID of the routing table associated with this subnets
-    -  __type__: `string`

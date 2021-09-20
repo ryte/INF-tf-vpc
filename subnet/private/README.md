@@ -11,62 +11,128 @@ This project is [internal open source](https://en.wikipedia.org/wiki/Inner_sourc
 and currently maintained by the [INF](https://github.com/orgs/ryte/teams/inf).
 
 
-## Module Input Variables
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-- `availability_zones`
-    -  __description__: Region AZs this VPC should cover. Currently this would be a list of two (a, b) or three (a, b, c) AZs.
-    -  __type__: `map`
-    -  __default__: ["a", "b", "c"]
+The following requirements are needed by this module:
 
-- `egw_id`
-    -  __description__: Reference to an Egress only gateway for outgoing IPV6 traffic. If defined appropriate routing will be defined in the subnet routing table. depends on variable gw
-    -  __type__: `string`
-    -  __default__: ""
+- terraform (>= 0.12)
 
-- `environment`
-    -  __description__: the environment this vpc is created in (e.g. 'testing')
-    -  __type__: `string`
+## Providers
 
-- `gw`
-    -  __description__: set the gateway, values 'ngw', 'egw', false are allowed
-    -  __type__: `string`
-    -  __default__: false
+The following providers are used by this module:
 
-- `ngw_id`
-    -  __description__: Reference to an NAT gateway for outgoing IPV4 traffic. If defined appropriate routing will be defined in the subnet routing table. depends on variable gw
-    -  __type__: `string`
-    -  __default__:
+- aws
 
-- `tags`
-    -  __description__: a map of tags which is added to all supporting ressources
-    -  __type__: `map` `string`
-    -  __default__: {}
+## Required Inputs
 
-- `v4_netnum_summand`
-    -  __description__: subnet count offset
-    -  __type__: `string`
-    -  __default__:
+The following input variables are required:
 
-- `v4_newbits`
-    -  __description__: bits for the new subnets 8 creates a /24 from a /16 VPC
-    -  __type__: `string`
-    -  __default__: 8
+### environment
 
-- `v6_netnum_summand`
-    -  __description__: subnet count offset
-    -  __type__: `string`
-    -  __default__:
+Description: the environment this vpc is created in (e.g. 'testing')
 
-- `v6_newbits`
-    -  __description__: bits for the new subnets 8 creates a /24 from a /16 VPC
-    -  __type__: `string`
-    -  __default__: 8
+Type: `string`
 
-- `vpc_id`
-    -  __description__: VPC id the subnets will be defined in
-    -  __type__: `string`
+### vpc\_id
 
+Description: VPC id the subnets will be defined in.
 
+Type: `string`
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### availability\_zones
+
+Description: Region AZs this VPC should cover. Currently this would be a list of two (a, b) or three (a, b, c) AZs.
+
+Type: `list(string)`
+
+Default:
+
+```json
+[
+  "a",
+  "b",
+  "c"
+]
+```
+
+### egw\_id
+
+Description: Reference to an Egress only gateway for outgoing IPV6 traffic. If defined appropriate routing will be defined in the subnet routing table. depends on variable gw
+
+Type: `string`
+
+Default: `""`
+
+### gw
+
+Description: set the gateway, 'ngw', 'egw', false allowed
+
+Type: `bool`
+
+Default: `false`
+
+### ngw\_id
+
+Description: Reference to an NAT gateway for outgoing IPV4 traffic. If defined appropriate routing will be defined in the subnet routing table. depends on variable gw
+
+Type: `string`
+
+Default: `""`
+
+### tags
+
+Description: common tags to add to the ressources
+
+Type: `map(string)`
+
+Default: `{}`
+
+### v4\_netnum\_summand
+
+Description: subnet count offset
+
+Type: `any`
+
+Default: `null`
+
+### v4\_newbits
+
+Description: bits for the new subnets 8 creates a /24 from a /16 VPC
+
+Type: `number`
+
+Default: `8`
+
+### v6\_netnum\_summand
+
+Description: subnet count offset
+
+Type: `any`
+
+Default: `null`
+
+### v6\_newbits
+
+Description: bits for the new subnets 8 creates a /24 from a /16 VPC
+
+Type: `number`
+
+Default: `8`
+
+## Outputs
+
+The following outputs are exported:
+
+### ids
+
+Description: List of subnet ids
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Usage
 
 ```hcl
@@ -89,9 +155,3 @@ module "subnet_private" {
   source = "github.com/ryte/INF-tf-vpc//subnet/private?ref=v0.3.1"
 }
 ```
-
-## Outputs
-
-- `ids`
-    -  __description__: List of subnet ids
-    -  __type__: `list`

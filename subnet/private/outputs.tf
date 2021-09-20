@@ -1,3 +1,4 @@
 output "ids" {
-  value = aws_subnet.subnet.*.id
+  description = "List of subnet ids"
+  value       = aws_subnet.subnet.*.id
 }
